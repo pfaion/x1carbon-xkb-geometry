@@ -1,0 +1,129 @@
+// Created by Patrick Faion
+// Geometry specification for Lenovo ThinkPad X1 Carbon
+
+xkb_geometry "common" {
+    width = 302;
+    height = 123;
+    key.color = "grey80";
+    labelColor = "white";
+
+    // shapes for different keys
+    shape "ESC"  { cornerRadius = 1, { [22.75, 12] } };
+    shape "FN0"  { cornerRadius = 1, { [16, 12] } };
+    shape "NORM" { cornerRadius = 1, { [18, 18] } };
+    shape "BKSP" { cornerRadius = 1, { [38, 18] } };
+    shape "TABK" { cornerRadius = 1, { [27, 18] } };
+    shape "BKSL" { cornerRadius = 1, { [29, 18] } };
+    shape "CAPS" { cornerRadius = 1, { [31, 18] } };
+    shape "RTRN" { cornerRadius = 1, { [45, 18] } };
+    shape "LFSH" { cornerRadius = 1, { [41, 18] } };
+    shape "RTSH" { cornerRadius = 1, { [55, 18] } };
+    shape "LCTL" { cornerRadius = 1, { [21, 18] } };
+    shape "SPCE" { cornerRadius = 1, { [98, 18] } };
+    shape "ARRS" { cornerRadius = 1, { [17, 12] } };
+    shape "PGUD" { cornerRadius = 1, { [17, 10.5] } };
+
+    // other shapes
+	shape "LED"  { cornerRadius = 2, { [2,  2] } };
+	shape "BG" { cornerRadius = 1, { [302, 123]} };
+
+    // background patch around all keys
+	solid "Background" {
+		shape = "BG";
+		left = 0;
+		top = 0;
+		color = "gray40";
+    };
+
+    // function key row
+    section "Function" {
+		left = 1.5;
+		top = 2;
+    	key.gap = 0.5;
+		key.shape = "FN0";
+		row {
+			keys {
+				{ <ESC>, "ESC" },
+				<FK01>, <FK02>, <FK03>, <FK04>,
+				{ <FK05>, 2 }, <FK06>, <FK07>, <FK08>,
+				{ <FK09>, 2 }, <FK10>, <FK11>, <FK12>,
+				{ <HOME>, 2 }, <END>, <INS>, { <DELE>, "ESC" }
+			};
+		};
+    };
+
+    // main key section
+	section "Main" {
+		left = 0;
+		top = 16;
+    	key.gap = 2;
+		key.shape = "NORM";
+		row {
+			keys {
+				<TLDE>,
+				<AE01>, <AE02>, <AE03>, <AE04>, <AE05>, <AE06>, <AE07>, <AE08>, <AE09>, <AE10>, <AE11>, <AE12>,
+				{ <BKSP>, "BKSP" }
+			};
+		};
+		row {
+			top = 20;
+			keys {
+				{ <TABK>, "TABK" },
+				<AD01>, <AD02>, <AD03>, <AD04>, <AD05>, <AD06>, <AD07>, <AD08>, <AD09>, <AD10>, <AD11>, <AD12>,
+				{ <BKSL>, "BKSL" }
+			};
+		};
+		row {
+			top = 40;
+			keys {
+				{ <CAPS>, "CAPS" },
+				<AC01>, <AC02>, <AC03>, <AC04>, <AC05>, <AC06>, <AC07>, <AC08>, <AC09>, <AC10>, <AC11>,
+				{ <RTRN>, "RTRN" }
+			};
+		};
+		text "CapsLockLabel" { left=20; text="CapsLock"; };
+		row {
+			top = 60;
+			keys {
+				{ <LFSH>, "LFSH" },
+				<AB01>, <AB02>, <AB03>, <AB04>, <AB05>, <AB06>, <AB07>, <AB08>, <AB09>, <AB10>,
+				{ <RTSH>, "RTSH" }
+			};
+		};
+		row {
+			top = 80;
+			keys {
+				<LCTL>, { <FN>, "LCTL" }, <LWIN>, <LALT>,
+				{ <SPCE>, "SPCE" },
+				<RALT>, <PRSC>, <RCTL>
+			};
+		};
+    };
+
+    // arrow keys
+	section "Arrows" {
+		left = 243;
+		top = 96;
+		key.gap = 2;
+		key.shape = "PGUD";
+		row {
+			keys {
+				<PGUP>, {<UP>, "ARRS"}, <PGDN>
+			};
+		};
+		row {
+			key.shape = "ARRS";
+			top = 12.5;
+			keys {
+				<LEFT>, <DOWN>, <RGHT>
+			};
+		};
+	};
+
+    // specification for caps lock indicator
+	indicator.onColor = "red";
+	indicator.offColor = "grey40";
+	indicator.shape = "LED";
+	indicator.top = 58;
+	indicator "Caps Lock" { left = 29; };
+};
